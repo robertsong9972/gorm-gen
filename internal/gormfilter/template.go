@@ -4,8 +4,6 @@ const FilterTemplate string = `package {{ .Package }}
 {{$condName := printf "%sCond" $.Name}}
 import (
 	"strings"
-
-	gormgen "github.com/robertsong9972/gorm-gen"
 )
 
 type {{ $.Name }}Filter struct {
@@ -58,17 +56,17 @@ func (f *{{ $.Name }}Filter) GetOrderBy() string {
 }
 
 func (f *{{ $.Name }}Filter) ToAndCond() (string, []interface{}) {
-	return f.buildCond(gormgen.AND)
+	return f.buildCond("and")
 }
 
 func (f *{{ $.Name }}Filter) ToOrCond() (string, []interface{}) {
-	return f.buildCond(gormgen.OR)
+	return f.buildCond("or")
 }
 
 
 func (f *{{ $.Name }}Filter) buildCond(condType string) (string, []interface{}) {
     if f == nil {
-		return gormgen.NOTFOUNDCOND, nil
+		return "1!=1", nil
 	}
 	f.condType = condType
 {{ range .Fields }}{{ if isNumber .Type }}
@@ -115,7 +113,7 @@ func (f *{{ $.Name }}Filter) buildCond(condType string) (string, []interface{}) 
 {{end}}{{end}}
 	f.wheres = f.builder.String()
 	if f.wheres == "" {
-		return gormgen.NOTFOUNDCOND, nil
+		return "1!=1", nil
 	}
 	return f.wheres, f.args
 }
