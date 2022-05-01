@@ -1,0 +1,160 @@
+/*
+# annotation_db
+*/
+syntax = "proto2";
+option go_package = "proto/dbproto/gen";
+
+package test;
+
+message TaskFlowInstanceTab {
+  optional uint64 id = 1;
+  optional uint64 task_id = 2;
+  optional string node_id = 3;
+  optional uint32 ctime = 4;
+  optional uint32 mtime = 5;
+}
+
+message TaskTab {
+  optional uint64 id = 1;   // pk
+  optional string region = 2;
+  optional string task_name = 3;
+  optional string task_desc = 4;
+  optional int32 task_type = 5;
+  optional int32 task_status = 6;
+  optional string supervisor = 7;
+  optional string data_source_info = 8;
+  optional string question = 9;
+  optional string rule_config = 10;
+  optional uint32 sample_num = 11;
+  optional uint32 selected_all = 12;
+  optional string creator = 13;
+  optional string modifier = 14;
+  optional uint32 ctime = 15;
+  optional uint32 mtime = 16;
+  optional uint32 re_tag_round = 17;
+}
+
+message TaskPreTestMappingTab {
+  optional uint64 id = 1;   // pk
+  optional uint64 task_id = 2;
+  optional uint64 pre_test_id = 3;
+  optional uint32 status_flag = 4;// 1 able 0 disable
+  optional uint32 ctime = 5;
+  optional uint32 mtime = 6;
+}
+
+message PreTestTaskTab {
+  optional uint64 id = 1;   // pk
+  optional string region = 2;
+  optional string task_name = 3;
+  optional string task_desc = 4;
+  optional int32  task_type = 5;
+  optional uint32 sample_num = 6;
+  optional uint32 passing_score = 7;
+  optional int32 task_status = 8;
+  optional bytes data_source_info = 9;
+  optional bytes question = 10;
+  optional string creator = 11;
+  optional string modifier = 12;
+  optional uint32 ctime = 13;
+  optional uint32 mtime = 14;
+  optional int32 is_deleted = 15;
+  optional bool select_all = 16;
+}
+
+message PreTestSubTaskTab {
+  optional uint64 id = 1;
+  optional string region = 2;
+  optional uint64 assign_id = 3;
+  optional uint64 data_source_id = 4;
+  optional bytes answer_info = 5;
+  optional int32 status_flag = 6;
+  optional int32 validation_result = 7;
+  optional uint32 ctime = 8;
+  optional uint32 mtime = 9;
+  optional int32 is_deleted = 10;
+}
+
+message AssignedTaskStatusTab {
+  optional uint64 id = 1;
+  optional string annotator = 2;
+  optional uint64 assign_id = 3;
+  optional uint64 task_id = 4;
+  optional int32  status_flag = 5;
+  optional int64 accuracy =6;
+  optional uint32 ctime = 7;
+  optional uint32 mtime = 8;
+}
+
+
+
+message SubTaskTab {
+  optional uint64 id = 1;
+  optional uint64 task_id = 2;
+  optional uint64 assign_id = 3;
+  optional int32  cross_type = 4;
+  optional uint64 data_source_id = 5;
+  optional bytes  answer_info = 6;
+  optional uint32 ctime = 7;
+  optional uint32 mtime = 8;
+  optional int32  status_flag = 9;
+}
+
+message SubTaskValidateTab {
+  optional uint64 id = 1;
+  optional uint64 task_id = 2;
+  optional uint64 sub_task_id = 3;
+  optional uint64 data_source_id = 4;
+  optional string validator = 5;
+  optional string validation_info = 6;
+  optional int32 validation_result = 7;
+  optional int32 validate_round = 8;
+  optional int32 retag_round = 9;
+  optional uint32 ctime = 10;
+  optional uint32 mtime = 11;
+  optional int32 status_flag = 12;
+  optional int32 assign_type = 13;
+}
+
+message AssignTaskTab {
+  optional uint64 id = 1;
+  optional int32 task_usage = 2;
+  optional uint64 task_id = 3;
+  optional int32 assign_type = 4;
+  optional string assignee = 5;
+  optional uint32 ctime = 6;
+  optional uint32 mtime = 7;
+  optional int32 is_deleted = 8;
+}
+
+message FileDataSourceTab {
+  optional uint64 id = 1; // pk
+  optional uint32 task_usage = 2;
+  optional uint64 task_id = 3;
+  optional uint32 row_id = 4;
+  optional string row_data = 5;
+  optional uint32 ctime = 6;
+  optional uint32 mtime = 7;
+  optional uint32 is_deleted = 8;
+}
+
+
+message ExportRecordTab{
+  optional uint64 id = 1;
+  optional string record_name = 2;
+  optional string export_url = 3;
+  optional string biz_type = 4;
+  optional int32 status_flag = 5;
+  optional string creator = 6;
+  optional uint32 ctime = 7;
+  optional uint32 mtime = 8;
+}
+message TaskConsensusTab{
+  optional uint64 id = 1;
+  optional uint64 task_id = 2;
+  optional uint64 data_source_id = 3;
+  optional int32  status_flag = 4; // 0 non-cross 1 cross
+  optional uint32 ctime = 7;
+  optional uint32 mtime = 8;
+}
+

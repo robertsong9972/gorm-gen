@@ -1,0 +1,22 @@
+code/
+/vendor/*
+/bin
+/data/*
+*/log/*
+*.log
+**/log
+**.log
+mock/
+/.idea
+
+# ignore generated golang code
+**/*.gen.go
+
+# ignore easyjson generated code
+*_easyjson.go
+
+# reduce noise when commit
+manifest.yaml
+.editorconfig
+
+.DS_Store
